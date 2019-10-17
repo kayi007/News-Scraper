@@ -22,8 +22,10 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/populate", { useNewUrlParser: true });
+// Connect to the Mongo DB or If deployed, use the deployed database (Heroku)
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webdevdb";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 // =============================================================
