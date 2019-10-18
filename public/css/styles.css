@@ -1,0 +1,9 @@
+header{
+    background-color: rgb(73, 164, 255);
+}
+
+.jumbotron{
+    background-image: url("/imgs/webdev.jpg");
+    background-size: cover;
+    height: 500px;
+}
