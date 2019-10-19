@@ -25,7 +25,9 @@ app.set("view engine", "handlebars");
 // Connect to the Mongo DB or If deployed, use the deployed database (Heroku)
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webdevdb";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).then(function(){
+    console.log("Mongoose is successfully connected");
+});
 
 // Routes
 // =============================================================
