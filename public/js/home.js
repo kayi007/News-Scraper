@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // When Click Scrap (not working)
-    $(document).on("click", "button.scrape", function(){
+    $("#scrape").on("click", function(){
         event.preventDefault();
         $.ajax({
             method: "GET",
@@ -12,5 +12,4 @@ $(document).ready(function(){
             console.log(err);
         });
     });
-
 });
