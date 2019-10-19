@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // When Click Scrap (not working)
+    // When Click Scrap (working)
     $("#scrape").on("click", function(){
         event.preventDefault();
         $.ajax({
@@ -12,4 +12,19 @@ $(document).ready(function(){
             console.log(err);
         });
     });
+    // When Click Save (not working)
+    $(document).on("click", "a.save", function(){
+        event.preventDefault();
+        const postID = $(this).attr("data-id");
+        console.log(postID);
+        $.ajax({
+            method:"PUT",
+            url: "/article/saved/" + postID
+        }).then(function(data){
+            location.reload();
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
 });

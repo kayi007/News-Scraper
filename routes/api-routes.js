@@ -39,5 +39,14 @@ module.exports = function (app) {
             res.status(200).end();
         });
     });
-
+    // Save Articles
+    app.put("/article/saved/:articleID", function(req, res){
+        db.Article.findOneAndUpdate({_id: req.params.articleID}, {saved: true}, {new: true}).then(function(dbArticle){
+            console.log(dbArticle);
+            res.status(200).end();
+        }).catch(function(err){
+            console.log(err);
+            return res.status(500).end();
+        });
+    });
 };
