@@ -8,6 +8,7 @@ module.exports = function (app) {
     // initial page view
     app.get("/", function (req, res) {
         db.Article.find({}).then(function(dbArticle){
+            console.log(dbArticle);
             const hbsObject = {
                 articles: dbArticle
             }

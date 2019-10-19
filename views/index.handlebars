@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col">
+        {{!-- <div class="article-container"> --}}
+            {{#if articles.length}}
+            {{#each articles}}
+            {{#unless saved}}
+            {{> article}}
+            {{/unless}}
+            {{/each}}
+            {{else}}
+            <div class="alert alert-warning text-center">
+                <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+            </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>What would you like to do?</h3>
+                </div>
+                <div class="card-body">
+                    <h4>Try Scraping New Posts!</h4>
+                    <h4>Go to Saved Posts</h4>
+                </div>
+            </div>
+            {{/if}}
+        {{!-- </div> --}}
+    </div>
+</div>
