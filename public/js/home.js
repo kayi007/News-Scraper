@@ -40,7 +40,7 @@ $(document).ready(function(){
             console.log(err);
         });
     });
-    // When Clear button is clicked (not working)
+    // When Clear button is clicked (working)
     $("#clear").on("click", function(){
         event.preventDefault();
         $.ajax({
@@ -51,5 +51,10 @@ $(document).ready(function(){
         }).catch(function(err){
             console.log(err);
         });
+    });
+    // When Add Note is Clicked (not working)
+    $(".addNotes").on("click", function(){
+        event.preventDefault();
+        const postID = $(this).attr("data-id");
     });
 });
