@@ -28,6 +28,16 @@ $(document).ready(function(){
     });
     // When Click Delete Saved Articles (not working)
     $(document).on("click", "a.deleteSaved", function(){
-
+        event.preventDefault();
+        const postID = $(this).attr("data-id");
+        console.log(postID);
+        $.ajax({
+            method: "PUT",
+            url: "/article/delete/" + postID
+        }).then(function(data){
+            location.reload();
+        }).catch(function(err){
+            console.log(err);
+        });
     });
 });
