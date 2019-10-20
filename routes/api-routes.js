@@ -49,4 +49,18 @@ module.exports = function (app) {
             return res.status(500).end();
         });
     });
+    // Display Saved Article Page
+    app.get("/saved", function(req, res){
+        db.Article.find({saved: true}, function(err, dbArticle){
+            if (err) {
+                console.log(err);
+            }else{
+                console.log(dbArticle);
+                const hbsObject = {
+                    savedArticles: dbArticle
+                };
+                res.render("saved-articles", hbsObject);
+            }
+        });
+    });
 };

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col">
+        {{#if savedArticles.length}}
+        {{#each savedArticles}}
+        {{#if saved}}
+        {{> savedPosts}}
+        {{/if}}
+        {{/each}}
+        {{else}}
+        <div class="alert alert-warning text-center">
+            <h4>Uh Oh. Looks like we don't have any saved posts.</h4>
+        </div>
+        <div class="card text-center">
+            <div class="card-header">
+                <h3>Would You Like Browse Available Posts?</h3>
+            </div>
+            <div class="card-body">
+                <h4>Browse Posts</h4>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</div>

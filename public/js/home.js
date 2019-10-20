@@ -12,7 +12,7 @@ $(document).ready(function(){
             console.log(err);
         });
     });
-    // When Click Save (not working)
+    // When Click Save (working)
     $(document).on("click", "a.save", function(){
         event.preventDefault();
         const postID = $(this).attr("data-id");
@@ -26,5 +26,8 @@ $(document).ready(function(){
             console.log(err);
         });
     });
+    // When Click Delete Saved Articles (not working)
+    $(document).on("click", "a.deleteSaved", function(){
 
+    });
 });

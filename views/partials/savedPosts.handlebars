@@ -1,0 +1,18 @@
+<div data-id="{{_id}}" class="card mb-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3>
+                    <a class="article-link" target="_blank" href="https://old.reddit.com{{link}}"><i class="fa fa-comments-o" style="font-size:48px;color:rgb(241, 72, 72)"></i>&nbsp;&nbsp;{{title}}</a>
+                </h3>
+                <p><span class="author float-right">- {{author}}</span></p>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-danger deleteSaved float-right text-white" data-id="{{_id}}">DELETE FROM SAVED</a>
+            </div>
+            <div class="col-2 pl-0">
+                <a class="btn btn-info addNotes float-right text-white" data-id="{{_id}}">ADD NOTES</a>
+            </div>
+        </div>
+    </div>
+</div>
