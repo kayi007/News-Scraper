@@ -26,7 +26,7 @@ $(document).ready(function(){
             console.log(err);
         });
     });
-    // When Click Delete Saved Articles (not working)
+    // When Click Delete Saved Articles (working)
     $(document).on("click", "a.deleteSaved", function(){
         event.preventDefault();
         const postID = $(this).attr("data-id");
@@ -34,6 +34,18 @@ $(document).ready(function(){
         $.ajax({
             method: "PUT",
             url: "/article/delete/" + postID
+        }).then(function(data){
+            location.reload();
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+    // When Clear button is clicked (not working)
+    $("#clear").on("click", function(){
+        event.preventDefault();
+        $.ajax({
+            method: "DELETE",
+            url: "/article/clear"
         }).then(function(data){
             location.reload();
         }).catch(function(err){

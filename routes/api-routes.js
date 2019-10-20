@@ -73,4 +73,12 @@ module.exports = function (app) {
             return res.status(500).end();
         });
     });
+    // Clear All Articles
+    app.delete("/article/clear", function(req, res){
+        db.Article.collection.drop().then(function(){
+            res.status(200).end();
+        }).catch(function(err){
+            return res.status(500).end();
+        });
+    });
 };
