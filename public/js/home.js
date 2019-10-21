@@ -82,4 +82,16 @@ $(document).ready(function(){
             console.log(err);
         });
     });
+    // When Delete Note button is clicked (not working)
+    $(document).on("click", "button.note-delete", function(){
+        const noteID = $(this).attr("data-id");
+        $.ajax({
+            method: "DELETE",
+            url: "/article/delete-note/" + noteID
+        }).then(function(data){
+            location.reload();
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
 });

@@ -107,4 +107,14 @@ module.exports = function (app) {
             });
         });
     });
+    // Delete Note
+    app.delete("/article/delete-note/:noteID", function(req, res){
+        console.log(req.params.noteID);
+        db.Note.deleteOne({_id: req.params.noteID}).then(function(deletedNote){
+            res.status(200).end();
+        }).catch(function(err){
+            console.log(err);
+            return res.status(500).end();
+        });
+    });
 };

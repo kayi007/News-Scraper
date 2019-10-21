@@ -33,18 +33,24 @@
                                     {{#each note}}
                                     <div class="border list-group-item note">
                                         {{!-- Cant print comment! --}}
-                                        {{_id}}
-                                        <button class="btn btn-danger float-right note-delete"><i class="fa fa-trash" data-id="{{_id}}"></i></button>
+                                        {{!-- {{_id}} --}}
+                                        {{comment}}
+                                        <button class="btn btn-danger float-right note-delete" data-id="{{_id}}"><i
+                                                class="fa fa-trash"></i></button>
                                     </div>
                                     {{/each}}
                                 </div>
+                                {{else}}
+                                <h4>Uh Oh. Looks like we don't have any saved posts.</h4>
                                 {{/if}}
                                 <hr>
-                                <textarea class="border" id="noteInput" placeholder="New Note" rows="4" cols="56"></textarea>
+                                <textarea class="border" id="noteInput" placeholder="New Note" rows="4"
+                                    cols="56"></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary saveNotes" data-id="{{_id}}">SAVE NOTES</button>
+                                <button type="button" class="btn btn-primary saveNotes" data-id="{{_id}}">SAVE
+                                    NOTES</button>
                             </div>
                         </div>
                     </div>
