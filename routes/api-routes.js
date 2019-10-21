@@ -78,9 +78,33 @@ module.exports = function (app) {
         db.Article.collection.drop().then(function(){
             res.status(200).end();
         }).catch(function(err){
+            console.log(err);
             return res.status(500).end();
         });
     });
     // Add Note to Saved Article
-    
+    app.get("/article/add-note/:articleID", function(req, res){
+        db.Article.findOne({_id: req.params.articleID}).populate("note").then(function(dbArticle){
+            console.log(dbArticle);
+                const hbsObject = {
+                    savedArticles: dbArticle
+                };
+            res.render("saved-articles", hbsObject);
+        }).catch(function(err){
+            console.log(err);
+            return res.status(500).end();
+        });
+    });
+    // Save Note
+    app.post("/article/save-note/:articleID", function(req, res){
+        console.log(req.body);
+        db.Note.create({comment: req.body.note}).then(function(dbNote){
+            console.log(dbNote);
+            return db.Article.findOneAndUpdate({_id: req.params.articleID}, { $push: {note: dbNote._id}}, {new: true}).then(function(savedNote){
+                console.log(savedNote);
+                console.log("Note Saved!");
+                res.status(200).end();
+            });
+        });
+    });
 };

@@ -56,5 +56,30 @@ $(document).ready(function(){
     $(".addNotes").on("click", function(){
         event.preventDefault();
         const postID = $(this).attr("data-id");
+        $.ajax({
+            method: "GET",
+            url: "/article/add-note/" + postID
+        }).then(function(data){
+            // location.reload();
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+    // When Save Notes button is clicked (not working)
+    $(document).on("click", "button.saveNotes", function(){
+        event.preventDefault();
+        const postID = $(this).attr("data-id");
+        const comment = $("#noteInput").val().trim();
+        $.ajax({
+            method: "POST",
+            url: "/article/save-note/" + postID,
+            data: {
+                note: comment
+            }
+        }).then(function(data){
+            location.reload();
+        }).catch(function(err){
+            console.log(err);
+        });
     });
 });
