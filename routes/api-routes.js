@@ -49,18 +49,17 @@ module.exports = function (app) {
             return res.status(500).end();
         });
     });
-    // Display Saved Article Page
+    // Display each Saved Article & all the notes along them
     app.get("/saved", function(req, res){
-        db.Article.find({saved: true}, function(err, dbArticle){
-            if (err) {
-                console.log(err);
-            }else{
-                console.log(dbArticle);
-                const hbsObject = {
-                    savedArticles: dbArticle
-                };
-                res.render("saved-articles", hbsObject);
-            }
+        db.Article.find({saved: true}).populate("note").then(function(dbArticle){
+            console.log(dbArticle);
+            const hbsObject = {
+                savedArticles: dbArticle
+            };
+            res.render("saved-articles", hbsObject);
+        }).catch(function(err){
+            console.log(err);
+            return res.status(500).end();
         });
     });
     // Delete Saved Articles
@@ -73,7 +72,7 @@ module.exports = function (app) {
             return res.status(500).end();
         });
     });
-    // Clear All Articles
+    // Clear All Articles & Notes
     app.delete("/article/clear", function(req, res){
         db.Article.collection.drop().then(function(){
             res.status(200).end();
@@ -81,15 +80,8 @@ module.exports = function (app) {
             console.log(err);
             return res.status(500).end();
         });
-    });
-    // Add Note to Saved Article
-    app.get("/article/add-note/:articleID", function(req, res){
-        db.Article.findOne({_id: req.params.articleID}).populate("note").then(function(dbArticle){
-            console.log(dbArticle);
-                const hbsObject = {
-                    savedArticles: dbArticle
-                };
-            res.render("saved-articles", hbsObject);
+        db.Note.collection.drop().then(function(){
+            res.status(200).end();
         }).catch(function(err){
             console.log(err);
             return res.status(500).end();
@@ -111,6 +103,7 @@ module.exports = function (app) {
     app.delete("/article/delete-note/:noteID", function(req, res){
         console.log(req.params.noteID);
         db.Note.deleteOne({_id: req.params.noteID}).then(function(deletedNote){
+            console.log("Note Deleted!");
             res.status(200).end();
         }).catch(function(err){
             console.log(err);

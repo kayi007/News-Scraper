@@ -27,21 +27,21 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <h5>Comments:</h5>
+                                <h5 class="text-primary">Comments:</h5>
                                 {{#if note.length}}
                                 <div class="list-group note-container">
                                     {{#each note}}
                                     <div class="border list-group-item note">
                                         {{!-- Cant print comment! --}}
                                         {{!-- {{_id}} --}}
-                                        {{comment}}
-                                        <button class="btn btn-danger float-right note-delete" data-id="{{_id}}"><i
-                                                class="fa fa-trash"></i></button>
+                                        <span>{{comment}}</span>
+                                        {{!-- Not deleting --}}
+                                        <button class="btn btn-danger float-right note-delete" data-id="{{_id}}"><i class="fa fa-trash"></i></button>
                                     </div>
                                     {{/each}}
                                 </div>
                                 {{else}}
-                                <h4>Uh Oh. Looks like we don't have any saved posts.</h4>
+                                <h4 class="mt-2 text-warning">Uh Oh. Looks like we don't have any saved notes.</h4>
                                 {{/if}}
                                 <hr>
                                 <textarea class="border" id="noteInput" placeholder="New Note" rows="4"
